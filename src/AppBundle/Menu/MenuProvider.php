@@ -4,7 +4,6 @@ namespace AppBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\MenuItem;
-use Knp\Menu\NodeInterface;
 use Symfony\Cmf\Bundle\MenuBundle\Provider\PhpcrMenuProvider;
 
 class MenuProvider extends PhpcrMenuProvider
