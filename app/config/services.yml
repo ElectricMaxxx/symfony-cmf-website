@@ -1,6 +1,3 @@
-parameters:
-    cmf_simple_cms.persistence.phpcr.menu_provider.class: AppBundle\Menu\MenuProvider
-
 services:
     app.block.events:
         class: AppBundle\Block\EventsBlockService
@@ -12,3 +9,14 @@ services:
             - @cmf_core.publish_workflow.checker
         tags:
             - {name: "sonata.block"}
+    cmf_simple_cms.persistence.phpcr.menu_provider:
+      class: AppBundle\Menu\MenuProvider
+      arguments:
+        - @cmf_menu.loader.node
+        - @doctrine_phpcr
+        - %cmf_simple_cms.persistence.phpcr.menu_basepath%
+      tags:
+        - {name: knp_menu.provider, request: true}
+      calls:
+        - [ setManagerName, [ %cmf_simple_cms.persistence.phpcr.manager_name% ] ]
+        - [ setFactory, [ @cmf_menu.factory.quiet ] ]
